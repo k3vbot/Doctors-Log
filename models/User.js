@@ -6,10 +6,10 @@ class User extends Model {}
 
 User.init(
     {
-        id: {
-            type: DataTypes.UUID,
+        user_id: {
+            type: DataTypes.INTEGER,
             primaryKey: true,
-            defaultValue: DataTypes.UUIDV4,
+            autoIncrement: true,
         },
         username: {
             type: DataTypes.STRING,
@@ -29,7 +29,9 @@ User.init(
     },
     {
         sequelize,
-        modelName: 'users',
+        freezeTableName: true,
+        underscored: true,
+        modelName: 'user',
         hooks: {
             beforeCreate: async (user) => {
                 try {
