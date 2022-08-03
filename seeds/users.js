@@ -1,14 +1,14 @@
 module.exports = [
     {
-        username: 'jackjack',
+        username: 'doctor_A',
         password: 'passpass',
     },
     {
-        username: 'zazababes',
-        password: 'miiiizababbees',
+        username: 'doctor_cb',
+        password: 'nopassword',
     },
     {
-        username: 'insertgirlfriend',
-        password: 'rosesssss',
+        username: 'doctor_D',
+        password: 'p@ssword',
     },
 ];

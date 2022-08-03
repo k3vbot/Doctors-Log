@@ -1,17 +1,22 @@
 const User = require('./User');
-const Todo = require('./Todo');
+const patient = require('./patient');
 
-Todo.belongsTo(User, {
-    foreignKey: 'userId',
-});
 
-User.hasMany(Todo, {
-    foreignKey: 'userId',
-    onDelete: 'CASCADE',
-});
+
+// Patients belongsTo User
+patient.belongsTo(User, {
+    foreignKey: 'user_id',
+  });
+
+  // User have many Patients
+  User.hasMany(patient, {
+    foreignKey: 'user_id',
+  });
+
+
 
 
 module.exports = {
     User,
-    Todo,
+    patient,
 };
