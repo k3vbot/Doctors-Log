@@ -1,27 +1,35 @@
 const router = require('express').Router();
-const {Todo, User} = require('../models');
+const {patient, User} = require('../models');
 const bcrypt = require('bcryptjs');
 
 // /api prepended
 
 
-router.post('/todos', async (req, res) => {
+router.post('/patients', async (req, res) => {
     if(!req.session.isLoggedIn){
         res.status(401).json({error: 'You must be logged in to do that'});
     }
 
     try {
-        const newTodo = await Todo.create({
-            todo: req.body.todo,
-            userId: req.session.user.id,
+        const newPatient = await patient.create({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            DOB: req.body.DOB,
+            gender: req.body.gender,
+            postal_code: req.body.postal_code,
+            Description: req.body.Description,
+            Appointment_Date: req.body.Appointment_Date,
+            user_id: req.session.user.user_id,
         });
 
-        res.json(newTodo);
+        res.json(newPatient);
     } catch (error) {
         console.error(error);
         res.status(500).json({error});
     }
 });
+
+ 
 
 // post signup data to database
 router.post('/signup', async (req, res) => {
@@ -63,7 +71,8 @@ router.post('/signin', async (req, res) => {
         req.session.save(() => {
             req.session.user = existingUser;
             req.session.isLoggedIn = true;
-            res.json({success: true});
+            res.json({success: true,
+                existingUser});
         });
 
     } catch (error) {
@@ -80,6 +89,108 @@ router.post('/signout', async (req, res) => {
     }
 });
 
+router.get('/patients', (req, res) => {
+
+    if(!req.session.isLoggedIn){
+        res.status(401).json({error: 'You must be logged in to do that'});
+    }
+    try {
+    // find all patients
+    patient.findAll({})
+   .then(dbPatientData => res.json(dbPatientData))}
+   catch (error) {
+    console.error(error);
+    res.status(500).json({error});
+}
+});
+
+router.get('/users', (req, res) => {
+
+    if(!req.session.isLoggedIn){
+        res.status(401).json({error: 'You must be logged in to do that'});
+    }
+    try {
+    // find all patients
+    User.findAll({})
+   .then(dbPatientData => res.json(dbPatientData))}
+   catch (error) {
+    console.error(error);
+    res.status(500).json({error});
+}
+});
+
+router.get('/patients/:id', (req, res) => {
+
+    if(!req.session.isLoggedIn){
+        res.status(401).json({error: 'You must be logged in to do that'});
+    }
+    try {
+    // find a single patient by its `id`
+    patient.findOne({
+      where: {
+        patient_id: req.params.id
+      }
+    })
+      .then(dbPatientData => res.json(dbPatientData)
+      )}
+      catch (error) {
+        console.error(error);
+        res.status(500).json({error});
+    }
+  });
+
+
+
+router.delete('/patients/:id', (req, res) => {
+
+    if(!req.session.isLoggedIn){
+        res.status(401).json({error: 'You must be logged in to do that'});
+    }
+    try {
+    // delete on tag by its `id` value
+    patient.destroy({
+      where: {
+        patient_id: req.params.id
+      }
+    })
+    .then(dbPatientData => {
+      if (!dbPatientData) {
+        res.status(404).json({message: 'No patient found with this id'});
+        return;
+      }
+      res.json(dbPatientData);
+    })}
+    catch (error) {
+        console.error(error);
+        res.status(500).json({error});
+    }
+  });
+
+
+  router.delete('/users/:id', (req, res) => {
+
+    if(!req.session.isLoggedIn){
+        res.status(401).json({error: 'You must be logged in to do that'});
+    }
+    try {
+    // delete on tag by its `id` value
+    User.destroy({
+      where: {
+        user_id: req.params.id
+      }
+    })
+    .then(dbUserData => {
+      if (!dbUserData) {
+        res.status(404).json({message: 'No user found with this id'});
+        return;
+      }
+      res.json(dbUserData);
+    })}
+    catch (error) {
+        console.error(error);
+        res.status(500).json({error});
+    }
+  });
 
 
 module.exports = router;

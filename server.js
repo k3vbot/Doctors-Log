@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');//
 const express = require('express');
 const exphbs = require('express-handlebars');
 const expsesh = require('express-session');
@@ -46,6 +47,8 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 app.use(routes);
+
+//require("./routes/api/patients-routes.js")(app)
 
 // server listener + sequelize sync
 sequelize.sync({force: false}).then(() => {
