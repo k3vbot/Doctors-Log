@@ -5,6 +5,7 @@ const expsesh = require('express-session');
 
 const SequelizeStore = require('connect-session-sequelize')(expsesh.Store);
 const sequelize = require('./config/connection');
+const passport = require('./config/passport');
 const routes = require('./controllers/homepageController');
 
 // handlebars helpers
@@ -25,6 +26,8 @@ const sessionSettings = {
         db: sequelize,
     }),
 };
+app.use(passport.initialize());
+app.use(passport.session());
 
 const app = express();
 
