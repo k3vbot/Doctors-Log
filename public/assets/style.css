@@ -1,0 +1,8 @@
+:root {
+    --primary-color: lightblue;
+    --secondary-color: #b4b4c7;
+}
+
+.bg-light {
+    background-color: blue;
+}
