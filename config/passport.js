@@ -1,5 +1,4 @@
 const passport = require('passport');
-const { combineTableNames } = require('sequelize/types/utils');
 const LocalStrategy = require('passport-local').Strategy;
 
 const db = require('../models');

@@ -27,8 +27,6 @@ const sessionSettings = {
         db: sequelize,
     }),
 };
-app.use(passport.initialize());
-app.use(passport.session());
 
 const app = express();
 
@@ -45,7 +43,8 @@ app.use(expsesh(sessionSettings));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(routes);
 
 //require("./routes/api/patients-routes.js")(app)
