@@ -27,12 +27,13 @@ const sessionSettings = {
         db: sequelize,
     }),
 };
-app.use(passport.initialize());
-app.use(passport.session());
 
 const app = express();
 
 const PORT = process.env.PORT || 3001;
+
+
+
 
 // handlebars template engine
 app.engine('handlebars', hbs.engine);
@@ -45,7 +46,8 @@ app.use(expsesh(sessionSettings));
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(routes);
 
 //require("./routes/api/patients-routes.js")(app)
@@ -54,4 +56,3 @@ app.use(routes);
 sequelize.sync({force: false}).then(() => {
     app.listen(PORT, () => console.log('server up'));
 });
-
