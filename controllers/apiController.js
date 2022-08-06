@@ -1,15 +1,25 @@
 const router = require('express').Router();
 const {patient, User} = require('../models');
 const bcrypt = require('bcryptjs');
+const passport = require("../config/passport");
 
 // /api prepended
 
+router.post('/signin', passport.authenticate("local"), async (req, res) => {
+    try {
+        res.json({
+            user_id: req.user.user_id,
+            password: req.user.password
+          });
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error});
+    }
+});
+
 
 router.post('/patients', async (req, res) => {
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
-
     try {
         const newPatient = await patient.create({
             first_name: req.body.first_name,
@@ -19,7 +29,7 @@ router.post('/patients', async (req, res) => {
             postal_code: req.body.postal_code,
             Description: req.body.Description,
             Appointment_Date: req.body.Appointment_Date,
-            user_id: req.session.user.user_id,
+            user_id: req.user.user_id,
         });
 
         res.json(newPatient);
@@ -50,50 +60,18 @@ router.post('/signup', async (req, res) => {
     }
 });
 
-router.post('/signin', async (req, res) => {
-    try {
-        const existingUser = await User.findOne({
-            where: {
-                username: req.body.username
-            }
-        });
 
-        if(!existingUser) {
-            return res.status(401).json({error: 'invalid credentials'});
-        }
 
-        const passwordMatch = await bcrypt.compare(req.body.password, existingUser.password);
-
-        if(!passwordMatch){
-            return res.status(401).json({error: 'invalid credentials'});
-        }
-
-        req.session.save(() => {
-            req.session.user = existingUser;
-            req.session.isLoggedIn = true;
-            res.json({success: true,
-                existingUser});
-        });
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({error});
-    }
-});
-
-router.post('/signout', async (req, res) => {
-    if(req.session.isLoggedIn){
-        req.session.destroy(() => {
-            res.json({success: true});
-        });
-    }
+router.post('/signout', function(req, res, next) {
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
+  });
 });
 
 router.get('/patients', (req, res) => {
 
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
+
     try {
     // find all patients
     patient.findAll({})
@@ -106,9 +84,7 @@ router.get('/patients', (req, res) => {
 
 router.get('/users', (req, res) => {
 
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
+
     try {
     // find all patients
     User.findAll({})
@@ -120,10 +96,6 @@ router.get('/users', (req, res) => {
 });
 
 router.get('/patients/:id', (req, res) => {
-
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
     try {
     // find a single patient by its `id`
     patient.findOne({
@@ -143,9 +115,7 @@ router.get('/patients/:id', (req, res) => {
 
 router.delete('/patients/:id', (req, res) => {
 
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
+
     try {
     // delete on tag by its `id` value
     patient.destroy({
@@ -169,9 +139,6 @@ router.delete('/patients/:id', (req, res) => {
 
   router.delete('/users/:id', (req, res) => {
 
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
     try {
     // delete on tag by its `id` value
     User.destroy({
