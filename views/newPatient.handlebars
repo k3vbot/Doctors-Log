@@ -1,0 +1,59 @@
+<div class="container">
+  <div class="jumbotron mx-auto text-center">
+    <h3>Add a New Patient</h3>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+
+      <div class="card">
+        <div class="card-header">
+          Add Patient
+        </div>
+        <div class="card-body">
+          <form action="" method="POST" role="form">
+
+            <div class="form-group">
+              <label for="">First Name</label>
+              <input type="text" class="form-control" id="firstName" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="">Last Name</label>
+              <input type="text" class="form-control" id="lastName" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="">Date of Birth</label>
+              <input type="text" class="form-control" id="dob" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="">Gender</label>
+              <input type="text" class="form-control" id="gender" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="">Postal Code</label>
+              <input type="text" class="form-control" id="postalCode" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="">Description</label>
+              <input type="text" class="form-control" id="description" placeholder="">
+            </div>
+
+          </form>
+          <br>
+          <div class="text-right">
+            <button type="submit" class="btn btn-primary btn-md" id="addPatientbtn"
+              onclick="window.location.href='/privateOwner'">
+              <span class="fa fa-fire"></span> Add Patient</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+<script src="/assets/js/newPatient.js"></script>
