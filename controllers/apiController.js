@@ -63,11 +63,11 @@ router.post('/signup', async (req, res) => {
 
 
 router.post('/signout', function(req, res, next) {
-    req.logout(function(err) {
-      if (err) { return next(err); }
-      res.redirect('/');
-    });
+  req.logout(function(err) {
+    if (err) { return next(err); }
+    res.redirect('/');
   });
+});
 
 router.get('/patients', (req, res) => {
 
@@ -84,9 +84,7 @@ router.get('/patients', (req, res) => {
 
 router.get('/users', (req, res) => {
 
-    if(!req.session.isLoggedIn){
-        res.status(401).json({error: 'You must be logged in to do that'});
-    }
+
     try {
     // find all patients
     User.findAll({})
