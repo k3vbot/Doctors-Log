@@ -15,6 +15,11 @@ router.get('/signin', (req,res) => {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
+router.get('/signup', (req,res) => {
+    res.render('signup', {
+        isLoggedIn: req.session.isLoggedIn,
+    });
+});
 
 // renders users page using user database data
 router.get('/users', async (req, res) => {
