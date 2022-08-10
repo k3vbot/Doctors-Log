@@ -36,8 +36,8 @@ $(document).ready(() => {
         $('#postalCode').val("");
         $('#description').val("");
 
-        $.get('/userProfile', isAuthenticated, (req, res) => {
-            res.render('userProfile', {});
+        $.get('/patientList', isAuthenticated, (req, res) => {
+            res.render('patientList', {});
         });
     });
 });
