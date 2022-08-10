@@ -1,40 +1,40 @@
 $(document).ready(() => {
-    $("#addPatientBtn").on('click', event => {
+    $("#newPatientBtn").on('click', event => {
         event.preventDefault();
 
         const newPatient = {
-            firstName: $('#firstName')
+            first_name: $('#first_name')
             .val()
             .trim(),
-            lastName: $('#lastName')
+            last_name: $('#last_name')
             .val()
             .trim(),
-            dob: $('#dob')
+            DOB: $('#DOB')
             .val()
             .trim(),
             gender: $('#gender')
             .val()
             .trim(),
-            postalCode: $('#postalCode')
+            postal_code: $('#postal_code')
             .val()
             .trim(),
-            description: $('#description')
+            Description: $('#Description')
             .val()
             .trim(),
         };
 
-        $.post('api/new', newPatient)
+        $.post('api/newPatient', newPatient)
         .then(data => {
             console.log(data);
             alert('Adding new patient...');
         });
 
-        $('#firstName').val("");
-        $('#lastName').val("");
-        $('#dob').val("");
+        $('#first_name').val("");
+        $('#last_name').val("");
+        $('#DOB').val("");
         $('#gender').val("");
-        $('#postalCode').val("");
-        $('#description').val("");
+        $('#postal_code').val("");
+        $('#Description').val("");
 
         $.get('/patientList', isAuthenticated, (req, res) => {
             res.render('patientList', {});

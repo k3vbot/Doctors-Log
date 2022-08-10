@@ -1,8 +1,8 @@
 const router = require('express').Router();
 const apiController = require('./apiController');
 const {User} = require('../models');
-const {Todo} = require('../models');
 const {patient} = require('./../models');
+const passport = require("../config/passport");
 
 // renders signup/landing page
 router.get('/', (req,res) => {
@@ -60,6 +60,19 @@ router.get('/patientList', async (req, res) => {
     } catch (error) {
         res.status(500).json({error});
     }
+});
+
+router.get('/patients', (req, res) => {
+
+
+    try {
+    // find all patients
+    patient.findAll({})
+   .then(dbPatientData => res.json(dbPatientData))}
+   catch (error) {
+    console.error(error);
+    res.status(500).json({error});
+}
 });
 
 // sends routes w/ /api to apiController.js file
