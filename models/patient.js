@@ -8,7 +8,6 @@ patient.init(
   {
     patient_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
       primaryKey: true,
       autoIncrement: true,
     },
@@ -22,7 +21,6 @@ patient.init(
       },
     DOB:{
         type: DataTypes.DATE,
-        allowNull: false
     },
     gender:{
         type: DataTypes.STRING,
