@@ -2,6 +2,7 @@ const router = require('express').Router();
 const apiController = require('./apiController');
 const {User} = require('../models');
 const {Todo} = require('../models');
+const {patient} = require('./../models');
 
 // renders signup/landing page
 router.get('/', (req,res) => {
@@ -46,24 +47,11 @@ router.get('/users/:userId', async (req, res) => {
     }
 });
 
-router.get('/todos', async (req, res) => {
-    if(!req.session.isLoggedIn){
-        return res.redirect('/');
-    }
-
+router.get('/patientList', async (req, res) => {
     try {
-        const userTodosData = await Todo.findAll({
-            where: {
-                userId: req.session.user.id,
-            },
-        });
-
-        const todos = userTodosData.map(todo => todo.get({plain: true}));
-
-        res.render('todos', {
-            todos,
-            isLoggedIn: req.session.isLoggedIn,
-        });
+        const patientList = await patient.findAll();
+        console.log(patientList);
+        res.render('patientList', { patient });
     } catch (error) {
         res.status(500).json({error});
     }
