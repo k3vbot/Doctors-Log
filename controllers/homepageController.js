@@ -3,21 +3,27 @@ const apiController = require('./apiController');
 const {User} = require('../models');
 const {patient} = require('./../models');
 const passport = require("../config/passport");
+const isAuthenticated = require('../config/middleware/isAuthenticated');
 
 // renders signup/landing page
-router.get('/', (req,res) => {
+router.get('/', isAuthenticated, (req,res) => {
     res.render('landingPage', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
-router.get('/signin', (req,res) => {
+router.get('/signin', isAuthenticated, (req,res) => {
     res.render('signin', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
-router.get('/signup', (req,res) => {
+router.get('/signup', isAuthenticated, (req,res) => {
     res.render('signup', {
+        isLoggedIn: req.session.isLoggedIn,
+    });
+});
+router.get('/newPatient', isAuthenticated, (req, res) => {
+    res.render('newPatient', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
