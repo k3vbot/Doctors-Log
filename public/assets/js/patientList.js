@@ -2,7 +2,6 @@
   $(document).ready(() => {
     $.get("/patients", results => {
       for (let i = 0; i < results.length; i++) {
-        console.log(results[i]);
         const row = $("<div>");
         row.addClass("allPatients").addClass("card");
         row.attr("id", "post-number-" + i);

@@ -21,6 +21,12 @@ passport.use(
                         message: 'Invalid Username'
                     });
                 }
+
+                else if (!dbUser.validPassword(password)) {
+                    return done(null, false, {
+                        message: "Invalid Password."
+                    });
+                }
                
                 return done(null, dbUser);
             });

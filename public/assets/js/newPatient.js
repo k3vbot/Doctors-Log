@@ -9,6 +9,7 @@ const appointment_dateInput = document.getElementById('appointment_date');
 
 
 
+
 //$(document).ready(() => {
  //  $("#addPatientBtn").on('click', event => {
    addPatientBtn.addEventListener('click', async (event) => {
@@ -27,6 +28,7 @@ const appointment_dateInput = document.getElementById('appointment_date');
 }    
  /*       
         const newPatient = {
+
             fist_name: first_nameInput
             ,
             last_name: last_nameInput
@@ -40,9 +42,11 @@ const appointment_dateInput = document.getElementById('appointment_date');
             Description: descriptionInput,
             Appointment_Date: appointment_dateInput
             ,
+
         };
         console.log(newPatient);
         */
+
 
         try {
             const response = await fetch('/api/patients', {
@@ -67,6 +71,8 @@ const appointment_dateInput = document.getElementById('appointment_date');
         } catch (error) {
             alert(error);
         }
+
+
 
     
  //   });
