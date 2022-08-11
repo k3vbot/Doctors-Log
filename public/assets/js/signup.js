@@ -28,7 +28,7 @@
 
             await response.json();
             // change user window to the /users endpoint
-           window.location.href = '/patientList';
+           window.location.href = '/signin';
         } catch (error) {
             alert(error);
         }
