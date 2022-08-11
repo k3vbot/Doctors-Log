@@ -9,6 +9,7 @@ const appointment_dateInput = document.getElementById('appointment_date');
 
 
 
+
    addPatientBtn.addEventListener('click', async (event) => {
     event.preventDefault();
         const first_name = first_nameInput.value;
@@ -48,6 +49,8 @@ const appointment_dateInput = document.getElementById('appointment_date');
         } catch (error) {
             alert(error);
         }
+
+
 
     
  //   });

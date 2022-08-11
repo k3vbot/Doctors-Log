@@ -57,4 +57,8 @@ User.init(
     }
 );
 
+User.prototype.validPassword = function(password) {
+    return bcrypt.compareSync(password, this.password);
+}
+
 module.exports = User;
