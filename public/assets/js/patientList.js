@@ -5,8 +5,7 @@ $(document).ready(() => {
         row.addClass("allPatients").addClass("card");
         row.attr("id", "post-number-" + i);
         $("#chirp-area").prepend(row);
-        $("#post-number-" + i).append("<h2 class='card-header'>First Name: " + results[i].first_name + "</h2>");
-        $("#post-number-" + i).append("<p>Last Name: " + results[i].last_name + "</p>");
+        $("#post-number-" + i).append("<h2 class='card-header'>" + results[i].first_last_name + "</h2>");
         $("#post-number-" + i).append("<p>DOB: " + results[i].DOB + "</p>");
         $("#post-number-" + i).append("<p>Gender: " + results[i].gender + "</p>");
         $("#post-number-" + i).append("<p>Postal Code: " + results[i].postal_code + "</p>");

@@ -12,14 +12,10 @@ patient.init(
       primaryKey: true,
       autoIncrement: true,
     },
-    first_name: {
+    first_last_name: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    last_name: {
-        type: DataTypes.STRING,
-        allowNull: false
-      },
     DOB:{
         type: DataTypes.DATE,
         allowNull: false

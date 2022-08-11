@@ -62,11 +62,12 @@ router.post('/signup', async (req, res) => {
 
 
 
-router.post('/signout', function(req, res, next) {
-  req.logout(function(err) {
-    if (err) { return next(err); }
-    res.redirect('/');
-  });
+router.post('/signout', async (req, res) => {
+  if(req.session.isLoggedIn){
+      req.session.destroy(() => {
+          res.json({success: true});
+      });
+  }
 });
 
 router.get('/patients', (req, res) => {

@@ -3,10 +3,7 @@ $(document).ready(() => {
         event.preventDefault();
 
         const newPatient = {
-            first_name: $('#first_name')
-            .val()
-            .trim(),
-            last_name: $('#last_name')
+            first_name: $('#first_last_name')
             .val()
             .trim(),
             DOB: $('#DOB')
@@ -29,8 +26,7 @@ $(document).ready(() => {
             alert('Adding new patient...');
         });
 
-        $('#first_name').val(" ");
-        $('#last_name').val(" ");
+        $('#first_last_name').val(" ");
         $('#DOB').val(" ");
         $('#gender').val(" ");
         $('#postal_code').val(" ");

@@ -3,26 +3,26 @@ const apiController = require('./apiController');
 const {User} = require('../models');
 const {patient} = require('./../models');
 const passport = require("../config/passport");
-const isAuthenticated = require('../config/middleware/isAuthenticated');
+// cons = require('../config/middleware/isAuthenticated');
 
 // renders signup/landing page
-router.get('/', isAuthenticated, (req,res) => {
+router.get('/', (req,res) => {
     res.render('landingPage', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
-router.get('/signin', isAuthenticated, (req,res) => {
+router.get('/signin', (req,res) => {
     res.render('signin', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
-router.get('/signup', isAuthenticated, (req,res) => {
+router.get('/signup', (req,res) => {
     res.render('signup', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
-router.get('/newPatient', isAuthenticated, (req, res) => {
+router.get('/newPatient', (req, res) => {
     res.render('newPatient', {
         isLoggedIn: req.session.isLoggedIn,
     });
@@ -80,6 +80,17 @@ router.get('/patients', (req, res) => {
     res.status(500).json({error});
 }
 });
+
+router.post('/', (req, res) => {
+    if (req.session.loggedIn) {
+      req.session.destroy(() => {
+        res.status(204).end();
+      });
+    }
+    else {
+      res.status(404).end();
+    }
+  });
 
 // sends routes w/ /api to apiController.js file
 router.use('/api', apiController);
