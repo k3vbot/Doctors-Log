@@ -2,27 +2,26 @@ const router = require('express').Router();
 const apiController = require('./apiController');
 const {User} = require('../models');
 const {patient} = require('./../models');
-const passport = require("../config/passport");
 const isAuthenticated = require('../config/middleware/isAuthenticated');
 
 // renders signup/landing page
-router.get('/', isAuthenticated, (req,res) => {
+router.get('/', (req,res) => {
     res.render('landingPage', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
 
-router.get('/signin', isAuthenticated, (req,res) => {
+router.get('/signin', (req,res) => {
     res.render('signin', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
-router.get('/signup', isAuthenticated, (req,res) => {
+router.get('/signup', (req,res) => {
     res.render('signup', {
         isLoggedIn: req.session.isLoggedIn,
     });
 });
-router.get('/newPatient', isAuthenticated, (req, res) => {
+router.get('/newPatient', (req, res) => {
     res.render('newPatient', {
         isLoggedIn: req.session.isLoggedIn,
     });

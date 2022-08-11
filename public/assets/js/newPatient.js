@@ -21,6 +21,9 @@ $(document).ready(() => {
             Description: $('#Description')
             .val()
             .trim(),
+            Appointment_date: $('#Appointment_date')
+            .val()
+            .trim(),
         };
 
         $.post('api/newPatient', newPatient)
@@ -29,12 +32,13 @@ $(document).ready(() => {
             alert('Adding new patient...');
         });
 
-        $('#first_name').val(" ");
-        $('#last_name').val(" ");
-        $('#DOB').val(" ");
-        $('#gender').val(" ");
-        $('#postal_code').val(" ");
-        $('#Description').val(" ");
+        $('#first_name').val("");
+        $('#last_name').val("");
+        $('#DOB').val("");
+        $('#gender').val("");
+        $('#postal_code').val("");
+        $('#Description').val("");
+        $('Appointment_date').val("");
 
         $.get('/patientList', isAuthenticated, (req, res) => {
             res.render('patientList', {});
