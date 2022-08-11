@@ -5,7 +5,6 @@
 
     signUpform.addEventListener('click', async (event) => {
 
-    //signUpform.on("submit", event => {
         event.preventDefault();
         const username = SigninusernameInput.value;
         const password = SigninpasswordInput.value;
