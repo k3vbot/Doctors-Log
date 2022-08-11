@@ -10,8 +10,6 @@ const appointment_dateInput = document.getElementById('appointment_date');
 
 
 
-//$(document).ready(() => {
- //  $("#addPatientBtn").on('click', event => {
    addPatientBtn.addEventListener('click', async (event) => {
     event.preventDefault();
         const first_name = first_nameInput.value;
@@ -26,26 +24,6 @@ const appointment_dateInput = document.getElementById('appointment_date');
     alert('Please enter a valid first name');
     return;
 }    
- /*       
-        const newPatient = {
-
-            fist_name: first_nameInput
-            ,
-            last_name: last_nameInput
-            ,
-            DOB: DOBInput
-            ,
-            gender: genderInput
-            ,
-            postal_code: postal_codeInput
-            ,
-            Description: descriptionInput,
-            Appointment_Date: appointment_dateInput
-            ,
-
-        };
-        console.log(newPatient);
-        */
 
 
         try {

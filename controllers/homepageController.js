@@ -19,7 +19,6 @@ router.get('/signin', isAuthenticated, (req,res) => {
 });
 router.get('/signup', isAuthenticated, (req,res) => {
     res.render('signup', {
-        isLoggedIn: req.session.isLoggedIn,
     });
 });
 router.get('/newPatient', isAuthenticated, (req, res) => {
@@ -68,7 +67,7 @@ router.get('/patientList', async (req, res) => {
     }
 });
 
-router.get('/patients', (req, res) => {
+router.get('/patients',(req, res) => {
 
 
     try {
@@ -111,7 +110,36 @@ router.post('/patients', async (req, res) => {
     }
 });
 
+router.get('/signout', (req,res) => {
+    res.render('signin', {    });
+});
 
+
+router.get('/signup', (req,res) => {
+     try {
+    res.render('signup', {});
+} catch (error) {
+    res.status(500).json({error});
+}
+});
+
+router.post('/signup', async (req, res) => {
+    try {
+        // adds signup data to database
+        // post data: { username: '', password: ''}
+        const newUser = await User.create(req.body);
+
+        // saves user session with new user data
+        req.session.save(() => {
+            req.session.user = newUser;
+            req.session.isLoggedIn = true;
+            res.json(newUser);
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error});
+    }
+});
 
 
 // sends routes w/ /api to apiController.js file

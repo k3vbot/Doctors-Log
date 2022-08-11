@@ -1,43 +1,40 @@
-$(document).ready(() => {
-    const signUpform = $("form.signup");
-    const firstNameInput = $("input#first-name-input");
-    const lastNameInput = $("input#last-name-input");
-    const usernameInput = $("input#username-input");
-    const passwordInput = $("input#password-input");
+    const signUpform = document.getElementById("signupBtn");
+ 
+    const SigninusernameInput = document.getElementById("signupUsernameInput");
+    const SigninpasswordInput = document.getElementById("signupPasswordInput");
 
-    signUpform.on("submit", event => {
+    signUpform.addEventListener('click', async (event) => {
+
+    //signUpform.on("submit", event => {
         event.preventDefault();
-        const userData = {
-            first_name: firstNameInput.val().trim(),
-            last_name: lastNameInput.val().trim(),
-            username: usernameInput.val().trim(),
-            password: passwordInput.val().trim()
-        };
+        const username = SigninusernameInput.value;
+        const password = SigninpasswordInput.value;
 
-        if (!userData.first_name || !userData.last_name || !userData.username || !userData.password) {
+        if(username.trim().length === 0){
+            alert('Please enter a valid first name');
             return;
-        }
+        }    
 
-        signUpUser(userData.first_name, userData.last_name, userData.username, userData.password);
-        firstNameInput.val("");
-        lastNameInput.val("");
-        usernameInput.val("");
-        passwordInput.val("");
+        try {
+            const response = await fetch('/api/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                })
+            });
+
+            await response.json();
+            // change user window to the /users endpoint
+           window.location.href = '/patientList';
+        } catch (error) {
+            alert(error);
+        }
     });
 
-    function signUpUser(first_name, last_name, username, password) {
-        $.post("/api/signup", {
-            first_name: first_name,
-            last_name: last_name,
-            username: username,
-            password: password
-        }).then(() => {
-            window.location.replace("/patientList");
-        }).catch(handleLoginErr);
-    }
 
-    function handleLoginErr(err) {
-        $("#alert .msg").test(err.responseJSON);
-        $("#alert").fadeIn(500);
-    }
-});
+
+  
