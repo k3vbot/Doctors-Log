@@ -1,3 +1,5 @@
+<form>
+<!--
 <div class="container">
   <div class="jumbotron mx-auto text-center">
     <h3>Add a New Patient</h3>
@@ -10,50 +12,135 @@
         <div class="card-header">
           Add Patient
         </div>
-        <div class="card-body">
-          <form action="" method="POST" role="form">
+        <div class="card-body"> -->
+          <!--<form action="" method="POST" role="form" id="form-id"> -->
+<!--
 
             <div class="form-group">
-              <label class="cardHeader" for="">First Name</label>
-              <input type="text" class="form-control" id="first_name" placeholder="">
+              <label for="">First Name</label>
+              <input type="STRING" class="form-control" id="first_name" placeholder="">
+
             </div>
 
             <div class="form-group">
               <label for="">Last Name</label>
-              <input type="text" class="form-control" id="last_name" placeholder="">
+              <input type="STRING" class="form-control" id="last_name" placeholder="">
             </div>
 
             <div class="form-group">
               <label for="">Date of Birth</label>
-              <input type="text" class="form-control" id="DOB" placeholder="">
+              <input type="DATE" class="form-control" id="DOB" placeholder="">
             </div>
 
             <div class="form-group">
               <label for="">Gender</label>
-              <input type="text" class="form-control" id="gender" placeholder="">
+              <input type="STRING" class="form-control" id="gender" placeholder="">
             </div>
 
             <div class="form-group">
               <label for="">Postal Code</label>
-              <input type="text" class="form-control" id="postal_code" placeholder="">
+              <input type="INTEGER" class="form-control" id="postal_code" placeholder="">
             </div>
 
             <div class="form-group">
               <label for="">Description</label>
-              <input type="text" class="form-control" id="Description" placeholder="">
+              <input type="STRING" class="form-control" id="Description" placeholder="">
             </div>
 
-          </form>
+            <div class="form-group">
+              <label for="">Appointment Date</label>
+              <input type="DATE" class="form-control" id="appointment_date" placeholder="">
+            </div>
+
           <br>
           <div class="text-right">
-            <button type="submit" class="btn btn-primary btn-md" id="addPatientbtn"
-              onclick="window.location.href='/patientList'">
-              <span class="fa fa-fire"></span> Add Patient</button>
+
+            <!-- <button type="submit" class="btn btn-primary btn-md" id="addPatientBtn"
+            onclick="window.location.href='/patientlist'"> 
+              <span class="fa fa-fire"></span> Add Patient</button> -->
+        <!--
+         <button type="submit" class="btn btn-primary" id="addPatientBtn">Add Patient</button>
+
+
           </div>
+          
         </div>
       </div>
 
     </div>
   </div>
 </div>
-<script src="/assets/js/newPatient.js"></script>
+          </form>
+
+<script src="/assets/js/newPatient.js" type="text/javascript"></script>
+
+-->
+
+
+
+<!--
+  <div class="mb-3">
+    <label for="signinUsernameInput" class="form-label">Username</label>
+    <input type="text" class="form-control" id="signinUsernameInput" aria-describedby="emailHelp">
+    <div id="emailHelp" class="form-text">Please enter your username</div>
+  </div>
+  <div class="mb-3">
+    <label for="passwordInput" class="form-label">Password</label>
+    <input type="password" class="form-control" id="signinPasswordInput">
+  </div>
+-->
+<!--
+
+<div class="container">
+  <div class="jumbotron mx-auto text-center">
+    <h3>Add a New Patient</h3>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+-->
+      <div class="card">
+        <div class="card-header">
+          Add Patient
+        </div>
+        <div class="card-body">
+
+            <div class="form-group">
+              <label for="first_name">First Name</label>
+              <input type="text" class="form-control" id="first_name" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="last_name">Last Name</label>
+              <input type="text" class="form-control" id="last_name" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="DOB">Date of Birth</label>
+              <input type="text" class="form-control" id="DOB" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="gender">Gender</label>
+              <input type="text" class="form-control" id="gender" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="postal_code">Postal Code</label>
+              <input type="text" class="form-control" id="postal_code" placeholder="">
+            </div>
+
+            <div class="form-group">
+              <label for="Description">Description</label>
+              <input type="text" class="form-control" id="Description" placeholder="">
+            </div>
+
+            <div class="form-group">
+            <label for="appointment_date">Appointment Date</label>
+            <input type="text" class="form-control" id="appointment_date" >
+            </div>
+            
+          </div>
+          </div> 
+  <button type="submit" class="btn btn-primary" id="addPatientBtn">Add patient</button>
+</form>
+

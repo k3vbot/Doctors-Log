@@ -8,7 +8,7 @@ const passport = require("../config/passport");
 router.post('/signin', passport.authenticate("local"), async (req, res) => {
     try {
         res.json({
-            user_id: req.user.user_id,
+            username: req.user.username,
             password: req.user.password
           });
 

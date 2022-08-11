@@ -81,6 +81,39 @@ router.get('/patients', (req, res) => {
 }
 });
 
+
+
+router.get('/newPatient', async (req, res) => {
+    try {
+        res.render('newPatient',{});
+
+    } catch (error) {
+        res.status(500).json({error});
+    }
+});
+
+router.post('/patients', async (req, res) => {
+    try {
+        const newPatient = await patient.create({
+            first_name: req.body.first_name,
+            last_name: req.body.last_name,
+            DOB: req.body.DOB,
+            gender: req.body.gender,
+            postal_code: req.body.postal_code,
+            Description: req.body.Description,
+            Appointment_Date: req.body.Appointment_Date,
+        });
+
+        res.json(newPatient);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error});
+    }
+});
+
+
+
+
 // sends routes w/ /api to apiController.js file
 router.use('/api', apiController);
 
