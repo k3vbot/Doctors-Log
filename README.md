@@ -4,17 +4,12 @@
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [User Story](#user-story)
-  - [Acceptance Criteria](#acceptance-criteria)
   - [Screenshot](#screenshot)
   - [Links](#links)
 - [Strategy](#strategy)
   - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
-- [Author](#author)
-- [Acknowledgments](#acknowledgments)
+- [Meet the Team](#meet-the-team)
 
 
 ## Overview
